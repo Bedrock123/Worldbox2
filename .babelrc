@@ -1,0 +1,27 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage",
+        "corejs": "3.0.0"
+      }
+    ]
+  ],
+  "plugins": [
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-proposal-class-properties",
+      [
+        "module-resolver", {
+            "root": [
+                "./src"
+            ],
+            "alias": {
+                "@helpers": "./src/scripts/helpers",
+                "@EntityComponentCore": "./src/scripts/EntityComponentCore",
+                "@GameCore": "./src/scripts/GameCore"
+            }
+        }
+    ]  
+  ]
+}
