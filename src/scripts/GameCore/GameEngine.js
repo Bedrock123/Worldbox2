@@ -26,7 +26,19 @@ class GameEngine extends GameEnviornment {
         this._Initialize();
         this._Animate();
         this._LoadCamera();
+        this._LoadCharacters();
         // this._SetGridHelper();
+    }
+
+    _LoadCharacters() {
+        // Create the player character
+        const human = HumanEntity({
+            scene: this._scene, 
+            camera: this._camera,
+            renderer: this._renderer
+        });   
+
+        this._entityManager.Add(human, "Human");
     }
 
     _LoadCamera() {
@@ -39,15 +51,6 @@ class GameEngine extends GameEnviornment {
 
         this._entityManager.Add(player, "Player");
 
-        // Create the player character
-        const human = HumanEntity({
-            scene: this._scene, 
-            camera: this._camera,
-            renderer: this._renderer
-        });   
-
-        this._entityManager.Add(human, "Human");
-        
         // Create the enviornment character
         const enviornment = EnviornmentEntity({
             scene: this._scene, 

@@ -8,7 +8,7 @@ export const HumanEntity = (params) => {
     const Human = new Entity();
     
     Human.AddComponent(new ModelLoader({
-        color: "green",
+        color: "#f6e58d",
         scene: params.scene
     }), "ModelLoader");
 

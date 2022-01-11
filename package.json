@@ -43,10 +43,12 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "@xailabs/three-renderer-stats": "^1.0.4",
     "camera-controls": "^1.33.2",
     "core-js": "^3.8.1",
     "dat.gui": "^0.7.7",
     "gsap": "^3.7.0",
+    "simplex-noise": "^3.0.1",
     "stats.js": "^0.17.0",
     "three": "^0.136.0"
   }

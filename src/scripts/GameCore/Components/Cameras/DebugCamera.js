@@ -21,7 +21,7 @@ class DebugCamera extends Component {
         this._cameraControls = new CameraControls( params.camera, params.renderer.domElement );
         
         // Base Camera Control Settings
-        this._cameraControls.distance = 25;
+        this._cameraControls.distance = 170;
         this._cameraControls.dampingFactor = .06;
         this._cameraControls.draggingDampingFactor = .06;
         this._cameraControls.azimuthRotateSpeed = .3;

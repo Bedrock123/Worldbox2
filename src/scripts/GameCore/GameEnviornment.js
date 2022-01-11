@@ -2,6 +2,7 @@ import Stats from "stats.js";
 
 import * as THREE from 'three';
 import * as dat from 'dat.gui';
+import RendererStats from '@xailabs/three-renderer-stats';
 
 import globals from "@helpers/globals";
 
@@ -17,6 +18,7 @@ class GameEnviornment {
         if (globals.debug) {
             // Initalize the stats menu
             this._InitalizeStatsMenu();
+            this._InitalizeRenderStats();
             this._InitalizeGUI();
         }
     }
@@ -56,7 +58,7 @@ class GameEnviornment {
 
         this._renderer = new THREE.WebGLRenderer({
             canvas: canvas,
-            antialias: shouldHaveAntiAlias,
+            antialias: false,
             powerPreference: "high-performance",
         });
 
@@ -75,6 +77,14 @@ class GameEnviornment {
         this._Lighting();
         this._Resizing();
 
+    }
+
+    _InitalizeRenderStats() {
+        this._rendererStats = new RendererStats();
+        this._rendererStats.domElement.style.position	= 'absolute';
+        this._rendererStats.domElement.style.left	= '0px';
+        this._rendererStats.domElement.style.bottom	= '0px';
+        document.body.appendChild( this._rendererStats.domElement );
     }
 
     _InitalizeStatsMenu() {
@@ -109,11 +119,20 @@ class GameEnviornment {
             this._stats.end();
         }
 
+        if (this._rendererStats) {
+            this._rendererStats.update(this._renderer);
+        }
+
         // Recall scene
         requestAnimationFrame( this._Animate.bind(this) );
     }
 
     _Lighting() {
+        const spotLight = new THREE.SpotLight({color: "#fff"});
+        spotLight.position.set( 100, 1000, 100 );
+        spotLight.angle = .15;
+        spotLight.penumbra = 1;
+        this._scene.add(spotLight);
 
         const ambientLight = new THREE.AmbientLight({ color: "#fff" }, .5);
         this._scene.add(ambientLight);
